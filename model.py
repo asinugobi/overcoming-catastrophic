@@ -34,7 +34,7 @@ class Model:
         self.var_list = [W1, b1, W2, b2]
 
         # vanilla single-task loss
-        self.cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=self.y))
+        self.cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(labels=y_, logits=self.y))
         self.set_vanilla_loss()
 
         # performance metrics
