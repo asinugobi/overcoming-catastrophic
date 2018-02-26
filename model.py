@@ -29,9 +29,32 @@ class Model:
         b2 = bias_variable([out_dim])
 
         h1 = tf.nn.relu(tf.matmul(x,W1) + b1) # hidden layer
+        h1 = tf.nn.dropout(h1, 0.8)
         self.y = tf.matmul(h1,W2) + b2 # output layer
 
+        # W2 = weight_variable([50,1000])
+        # b2 = bias_variable([1000])
+
+        # h1 = tf.nn.relu(tf.matmul(x,W1) + b1) # hidden layer
+        # h1 = tf.nn.dropout(h1, 0.8)
+
+
+        # W3 = weight_variable([1000, 1000])
+        # b3 = bias_variable([1000])
+
+        # h2 = tf.nn.relu(tf.matmul(h1,W2) + b2) # hidden layer        
+        # h2 = tf.nn.dropout(h2, 0.5)
+
+
+        # W4 = weight_variable([1000,out_dim])
+        # b4 = bias_variable([out_dim])
+
+        # h3 = tf.nn.relu(tf.matmul(h2,W3) + b3) # hidden layer
+        # h3 = tf.nn.dropout(h3, 0.5)
+        # self.y = tf.matmul(h3,W4) + b4 # output layer
+
         self.var_list = [W1, b1, W2, b2]
+        # self.var_list = [W1, b1, W2, b2, W3, b3, W4, b4]
 
         # vanilla single-task loss
         self.cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(labels=y_, logits=self.y))

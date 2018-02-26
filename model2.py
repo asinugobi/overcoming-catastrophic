@@ -90,7 +90,8 @@ class Model:
                 self.dropout: 0.75}
 
             log_likelihood = tf.log(probs[0,class_ind])
-            gradients = self.compute_gradients(log_likelihood, self.var_list) 
+            # gradients = self.compute_gradients(log_likelihood, self.var_list) 
+            gradients = tf.gradients(log_likelihood, self.var_list)
             ders = sess.run(gradients, feed_dict=feed_dict)
             
             # square the derivatives and add to total
