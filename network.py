@@ -44,8 +44,8 @@ class SimpleCNN(object):
         pool2 = self.max_pool(conv2, 2, 2, 2, 2, name='pool2', padding='VALID')
 
         # Third layer 
-        conv3 = self.conv2d(pool2, 3, 3, 128, 1, 1, name='conv3', padding='SAME')
-        pool3 = self.max_pool(conv3, 2, 2, 1, 1, name='pool3', padding='VALID')
+        # conv3 = self.conv2d(pool2, 3, 3, 128, 1, 1, name='conv3', padding='SAME')
+        # pool3 = self.max_pool(conv3, 2, 2, 1, 1, name='pool3', padding='VALID')
 
         # Fully-connected layer 
         output_shape = pool2.get_shape()
