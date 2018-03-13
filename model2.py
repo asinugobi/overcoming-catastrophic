@@ -149,7 +149,7 @@ class Model:
 
         for v in range(len(self.var_list)):
             self.ewc_loss += (lam/2) * tf.reduce_sum(tf.multiply(self.F_accum[v].astype(np.float32),tf.square(self.var_list[v] - self.star_vars[v])))
-        self.train_step = tf.train.GradientDescentOptimizer(0.1).minimize(self.ewc_loss)
+        self.train_step = tf.train.GradientDescentOptimizer(0.001).minimize(self.ewc_loss)
 
 
 
