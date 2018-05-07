@@ -124,6 +124,16 @@ class Model:
 
     def set_vanilla_loss(self):
         self.train_step = tf.train.GradientDescentOptimizer(0.1).minimize(self.cross_entropy)
+        
+    def update_l2_loss(self, lam):
+        # l2 loss
+        # lam is weighting for previous task(s) constraints
+        if not hasattr(self, "l2_loss"):
+            self.l2_loss = self.cross_entropy
+
+        for v in range(len(self.var_list)):
+            self.l2_loss += (lam) * tf.nn.l2_loss(self.var_list[v])
+        self.train_step = tf.train.GradientDescentOptimizer(0.1).minimize(self.l2_loss)
 
     def update_ewc_loss(self, lam):
         # elastic weight consolidation
